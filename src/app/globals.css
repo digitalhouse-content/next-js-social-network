@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+   h2 {
+      @apply font-semibold;
+      @apply text-lg;
+   }
+
+   h3 {
+      @apply font-semibold;
+      @apply text-base;
+   }
+}
+
 html,
 body {
   max-width: 100vw;
