@@ -1,24 +1,21 @@
+import Menu from "@/components/menu/Menu";
 import Link from "next/link";
 import { FC, PropsWithChildren } from "react";
 
+const LINKS = [{title: 'Inicio', href:'/'}, 
+{title: 'Explorar', href: "/explorar"},
+{title: 'Perfil', href: "/mi-perfil"}]
+
 const UsersLayout: FC<PropsWithChildren> = ({children}) => {
     return <>
-        <header className="flex justify-between mb-4 px-8 py-4 bg-gray-100">
-          <div>
-            LOGO
+        <div className="w-full h-full grid grid-cols-12">
+          <div className="col-span-3">
+            <Menu links={LINKS}/>
           </div>
-          <div className="flex">
-            <div>
-              <Link href="/users">Usuarios</Link>
-            </div>
-            <div className="ml-4">
-              <Link href="/messages">Mensajes</Link>
-            </div>
+          <main className="col-span-6">{children}</main>
+          <div className="col-span-3">
+            PIE DE PAGINA MAIN
           </div>
-        </header>
-        <main>{children}</main>
-        <div>
-          PIE DE PAGINA MAIN
         </div>
     </>
 }
