@@ -13,17 +13,17 @@ const MessagesPage = () => {
         ,{
             name: 'Anakin Skywalker',
             username: 'anakin',
-        message: 'Primer mensaje',
-        repliesCount: 13
-    }]
+            message: 'Primer mensaje',
+            repliesCount: 13
+        }]
 
     return <>
         <main className="flex flex-col bg-gray-100 p-8">
-        <section className="flex flex-col mb-8">
-        {messages.map((message, index) => 
-                <Message key={`${index}`} message={message}/>)
-            }
-        </section>
+            <section className="flex flex-col mb-8">
+                {messages.map((message, index) =>
+                    <Message key={`${index}`} message={message}/>)
+                }
+            </section>
         </main>
     </>
 }

@@ -1,8 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Mulish } from 'next/font/google'
+import { Alegreya } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const mulish = Mulish({ subsets: ['latin'], variable: '--font-mulish' })
+const alegreya = Alegreya({ subsets: ['latin'], variable: '--font-alegreya' })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${mulish.className} ${mulish.variable} ${alegreya.variable}`}>
         {children}
       </body>
     </html>

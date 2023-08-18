@@ -1,31 +1,23 @@
 import Link from "next/link";
 import PostCounter from "../counters/PostsCounter";
-import { Hashtag } from "@/types/hash.types";
+import { TrendingHashtag } from "@/types/hash.types";
+import MessageHashtag from "../messages/MessageHashtag";
 
 type ExploreTrendingProps = {
-    hashes: Hashtag[]
+    hashes: TrendingHashtag[]
 }
 
 const ExploreTrending = ({hashes}: ExploreTrendingProps) => {
     if (!hashes || hashes.length === 0) return <></>
 
     return <>
-        <div className="bg-gray-200 rounded-lg px-8 py-4"
-            style={{minWidth: 250}}>
+        <div className="bg-gray-200 rounded-lg px-6 py-4 w-full">
             <h2 className="mb-2">Trending</h2>
             {hashes.slice(0,2).map((hash, index) =>
-            <div key={`trending-hash-${index}`}
-                className="mb-4">
-                <Link href="/mensajes?query=Tatooine&type=hash">
-                    <h4 className="font-semibold cursor-pointer p-1">#{hash.hash}</h4>
-                </Link>
-                <div className="px-1">
-                    <PostCounter count={hash.count} />
-                </div>
-            </div>
+                <MessageHashtag key={`trending-hash-${index}`} hash={hash}/>
             )}
             {hashes.length > 2 && 
-            <Link href="/explorar?type=hash">
+            <Link href="/explore?type=HASHTAGS">
             <div className="text-center link-primary">
                 Ver mas
             </div>
