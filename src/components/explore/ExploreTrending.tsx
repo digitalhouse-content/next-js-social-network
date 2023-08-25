@@ -1,5 +1,4 @@
 import Link from "next/link";
-import PostCounter from "../counters/PostsCounter";
 import { TrendingHashtag } from "@/types/hash.types";
 import MessageHashtag from "../messages/MessageHashtag";
 
