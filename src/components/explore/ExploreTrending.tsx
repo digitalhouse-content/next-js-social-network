@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PostCounter from "../counters/PostsCounter";
 import { TrendingHashtag } from "@/types/hash.types";
+import MessageHashtag from "../messages/MessageHashtag";
 
 type ExploreTrendingProps = {
     hashes: TrendingHashtag[]
@@ -16,16 +17,11 @@ const ExploreTrending = ({hashes}: ExploreTrendingProps) => {
             {hashes.slice(0,2).map((hash, index) =>
                 <div key={`trending-hash-${index}`}
                      className="mb-4">
-                    <Link href={`/mensajes?query=${hash.hash}&type=hash`}>
-                        <h4 className="font-semibold cursor-pointer p-1">{hash.hash}</h4>
-                    </Link>
-                    <div className="px-1">
-                        <PostCounter count={hash.count} />
-                    </div>
+                    <MessageHashtag hash={hash}/>
                 </div>
             )}
             {hashes.length > 2 &&
-                <Link href="/explorar?type=hash">
+                <Link href="/explore?type=HASHTAGS">
                     <div className="text-center link-primary">
                         Ver mas
                     </div>
