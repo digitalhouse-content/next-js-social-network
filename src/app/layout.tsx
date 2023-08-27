@@ -1,3 +1,4 @@
+import Navbar from '@/components/layout/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Mulish } from 'next/font/google'
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${mulish.className} ${mulish.variable} ${alegreya.variable}`}>
+        <Navbar />
         {children}
       </body>
     </html>
