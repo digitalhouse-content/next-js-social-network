@@ -15,7 +15,14 @@ const nextConfig = {
             pathname: '/**',
           },
         ],
-      }
+      },
+    async redirects(){
+      return [{
+        source: "/messages",
+        destination: "/",
+        permanent: true
+      }]
+    }
 }
 
 module.exports = nextConfig
