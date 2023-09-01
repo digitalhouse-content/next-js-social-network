@@ -1,7 +1,7 @@
 import FAQSection from '@/components/faq/FAQSection'
 import faqsApi from '@/services/faqs/faqs.service'
 
-export default async function FAQPage({params}: {params: {slug: string}}) {
+export default async function FAQPage({params}: {params}) {
   const faqPages = await faqsApi.getFAQPages();
   const faqPage = faqPages.data.find(page => page.attributes.slug === `/${params.slug}`)
 
