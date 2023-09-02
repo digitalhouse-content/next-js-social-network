@@ -1,8 +1,10 @@
 "use client"
 
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import SubmitButton from "../form/SubmitButton";
+import InputText from "../form/InputText";
 
 type FormData = {
     username: string;
@@ -16,37 +18,32 @@ const schema = yup.object({
 
 const LoginForm = () => {
 
-    const {register, handleSubmit, formState: {errors}} = useForm<FormData>({
+    const methods = useForm<FormData>({
         resolver: yupResolver(schema)
     });
+    const {handleSubmit} = methods;
 
     const onSubmit = (data: FormData) => {
         console.log(JSON.stringify(data));
     }
 
-    return <form onSubmit={handleSubmit(onSubmit)}>
-    <div className="flex flex-col">
-        <label className="mb-2">Nombre de usuario:</label>
-        <input 
-            {...register("username")}
-            className="p-4 mb-4 rounded bg-gray-50 border border-gray-200"
-            type="text" placeholder="Anakin Skywalker"/>
-        {errors?.username && <div className="text-red-600 mt-2">Este campo es obligatorio</div>}
-    </div>
-    <div className="flex flex-col mt-4">
-        <label className="mb-2">Contraseña:</label>
-        <input
-            {...register("password")}
-            className="p-4 mb-4 rounded bg-gray-50 border border-gray-200"
-            type="password"/>
-            {errors?.password && <div className="text-red-600 mt-2">Este campo es obligatorio</div>}
-    </div>
-    <div className="mt-4">
-        <button className="button-primary"
-            onClick={handleSubmit(onSubmit)}
-            >Iniciar sesión</button> 
-    </div>
-</form>
+    return <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <InputText label={"Nombre de usuario:"}
+                fieldName={"username"} 
+                placeholder="anakin"
+                type="text"
+             />
+             <InputText label={"Contraseña:"}
+                fieldName={"password"} 
+                placeholder="Anakin Skywalker"
+                type="password"
+             />
+            <SubmitButton label={"Iniciar sesión"} 
+                onSubmit={onSubmit} 
+                styles="mt-4"/>
+        </form>
+</FormProvider>
 }
 
 export default LoginForm;
