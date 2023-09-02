@@ -4,7 +4,7 @@ type RepliesCounterProps = {
 }
 
 const RepliesCounter = ({count, onClick} : RepliesCounterProps) => {
-    if (count == 0){
+    if (!count || count == 0){
         return <div className="link-primary" onClick={onClick}>
             Se el primero en responder
             </div>

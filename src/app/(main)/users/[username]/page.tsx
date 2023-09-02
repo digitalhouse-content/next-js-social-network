@@ -1,4 +1,3 @@
-import Message from "@/components/messages/Message";
 import UserTabs from "@/components/users/UserTabs";
 import Link from "next/link";
 import Image from "next/image";
