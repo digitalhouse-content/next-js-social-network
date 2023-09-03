@@ -30,9 +30,18 @@ services:
       - social_network
     depends_on:
       - db
+  redis: 
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --save 20 1 --loglevel warning --requirepass SocialNetworkPass
+    volumes:
+      - cache:/data
 
 volumes:
   postgres_db:
+  redis:
 
 networks:
   social_network:
