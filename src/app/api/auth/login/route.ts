@@ -18,16 +18,23 @@ client.connect().then(() => {
     console.log('connected to redis')
 })
 
-const ONE_MINUTE = 60;
+const TEN_MINUTE = 60 * 10;
 
 export async function POST(request: Request) {
     const {username, password} = await schema.validate(await request.json());
     try{
-        const loginResponse = await authApi.login(username, password);
+        const loginResponse = await authApi.loginInternal(username, password);
         const sessionId = uuidv4();
-        client.set(sessionId, loginResponse.accessToken, {EX: ONE_MINUTE})
+        const now = new Date();
+        const expireAt = new Date(now.getTime() + TEN_MINUTE * 1000).toUTCString();
+        client.set(sessionId, loginResponse.accessToken, {EX: TEN_MINUTE})
+        
+        const authCookie = `SocialSessionID=${sessionId}; Expires=${expireAt};Domain=localhost; Secure; HttpOnly`;
 
-        return NextResponse.json({sessionId, username});
+        return new Response(JSON.stringify(loginResponse.user), {
+            status: 200,
+            headers: { 'Set-Cookie': authCookie },
+        })
     }catch (e){
         if (e instanceof AccessDeniedError){
             return new Response(JSON.stringify({
