@@ -13,10 +13,10 @@ type IndexPageContainerProps = {
 
 const IndexPageContainer = ({initialQuery, messageResponse}: IndexPageContainerProps) => {
     return <>
-        <MessageProvider>
+        <MessageProvider initialPage={messageResponse} >
             <SearchBar initialQuery={initialQuery}/>
             <MessagePostForm />
-            <MessageFeed initialMessages={messageResponse} />
+            <MessageFeed/>
         </MessageProvider>
     </>
 }
