@@ -29,7 +29,7 @@ export async function POST(request: Request) {
         const expireAt = new Date(now.getTime() + TEN_MINUTE * 1000).toUTCString();
         client.set(sessionId, loginResponse.accessToken, {EX: TEN_MINUTE})
         
-        const authCookie = `SocialSessionID=${sessionId}; Expires=${expireAt};Domain=localhost; Secure; HttpOnly`;
+        const authCookie = `SocialSessionID=${sessionId}; Expires=${expireAt};Domain=localhost; HttpOnly; Path=/`;
 
         return new Response(JSON.stringify(loginResponse.user), {
             status: 200,

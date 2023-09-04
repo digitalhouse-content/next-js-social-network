@@ -7,7 +7,7 @@ import { FC, PropsWithChildren } from "react";
 
 const LINKS = [{title: 'Inicio', href:'/'},
 {title: 'Explorar', href: "/explore"},
-{title: 'Perfil', href: "/mi-perfil"}]
+{title: 'Perfil', href: "/profile"}]
 
 const UsersLayout: FC<PropsWithChildren> = async ({children}) => {
     const hashesPromise = exploreApi.getTrendingHashtags(0, 3);
