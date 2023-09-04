@@ -6,7 +6,7 @@ import * as yup from "yup";
 import SubmitButton from "../form/SubmitButton";
 import InputText from "../form/InputText";
 import httpExternalApi from "@/services/common/http.external.service";
-import authApi from "@/services/auth/auth.service";
+import authApi from "@/services/auth/auth.api";
 import { AccessDeniedError } from "@/services/common/http.errors";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
