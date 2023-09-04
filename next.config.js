@@ -14,6 +14,12 @@ const nextConfig = {
             port: '',
             pathname: '/**',
           },
+          {
+            protocol: 'https',
+            hostname: 'i.kym-cdn.com',
+            port: '',
+            pathname: '/**',
+          },
         ],
       },
     async redirects(){

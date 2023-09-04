@@ -4,3 +4,10 @@ export class AccessDeniedError extends Error {
         this.name = 'AccessDeniedError'
     }
 }
+
+export class ConflictError extends Error {
+    constructor(message: string){
+        super(message)
+        this.name = 'ConflictError'
+    }
+}
