@@ -21,7 +21,7 @@ export class HttpBaseAPI {
             },
         });
         if (!res.ok){
-            console.log(`${res.status} - ${res.statusText}`)
+            console.log(`${res.status} - ${res.statusText} - ${endpointSuffix}`)
             throw new Error("Failed to retrieve: " + endpointSuffix)
         }
         return res.json();

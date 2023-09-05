@@ -1,4 +1,3 @@
-import type { NextRequest } from 'next/server'
 import { headers } from 'next/headers'
 import userApi from '@/services/users/users.service';
 import UserPageContainerAsync from "@/components/users/UserPageContainerAsync";
