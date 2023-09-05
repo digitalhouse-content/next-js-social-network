@@ -33,7 +33,7 @@ class AuthService {
     buildAuthResponse(loginResponse: LoginResponseType): AuthResponseType {
         const sessionId = uuidv4();
         const now = new Date();
-        const expireAt = new Date(now.getTime() + TEN_MINUTE * 1000).toUTCString();
+        const expireAt = new Date(now.getTime() + TEN_MINUTE * 1000).getTime();
         this.client.set(sessionId, loginResponse.accessToken, {EX: TEN_MINUTE})
         return {
             sessionId: sessionId,
@@ -51,6 +51,10 @@ class AuthService {
 
     async getRedisValue(key: string): Promise<string | null> {
         return await this.client.get(key);
+    }
+
+    async logout(sessionId: string): Promise<void> {
+        await this.client.del(sessionId);
     }
 
 }

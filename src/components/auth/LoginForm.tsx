@@ -30,6 +30,7 @@ const LoginForm = () => {
             const loginResponse = await authApi.login(data.username, data.password);
             console.log(JSON.stringify(loginResponse));
             router.push("/");
+            router.refresh();
         }catch(e){
             if (e instanceof AccessDeniedError){
                 setServerError("Tus credenciales son inválidas");

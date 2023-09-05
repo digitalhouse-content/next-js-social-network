@@ -14,7 +14,6 @@ const UsersLayout: FC<PropsWithChildren> = async ({children}) => {
     const usersPromise = exploreApi.getFollowRecommendations(0, 5);
 
     const [hashes, users] = await Promise.all([hashesPromise, usersPromise])
-
     return <>
         <div className="w-full h-full grid grid-cols-12 gap-4 px-4">
           <div className="col-span-2">

@@ -13,6 +13,9 @@ class AuthAPI {
     register = async (username: string, password: string, name: string, photoUrl: string): Promise<LoginResponseType> => 
         httpExternalApi.httpPost(`/auth/register`, {username, password, name, photoUrl})
 
+    logout = async (): Promise<LoginResponseType> => 
+        httpExternalApi.httpPost(`/auth/logout`, {})
+
     loginInternal = async (username: string, password: string): Promise<LoginResponseType> => 
         httpInternalApi.httpPostPublic(`/auth/login`, {username: username, password: password})
 

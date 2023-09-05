@@ -1,6 +1,7 @@
 import { ConflictError } from '@/services/common/http.errors';
 import authService from '@/services/auth/auth.service';
 import RegisterScheme from "@/schemes/register.scheme";
+import { cookies } from 'next/headers';
 
 export async function POST(request: Request) {
     const {username, password, name, photoUrl} = await RegisterScheme.validate(await request.json());
@@ -8,11 +9,23 @@ export async function POST(request: Request) {
     try{
         const registerResponse = await authService.register(username, password, name, photoUrl)
         
-        const authCookie = `SocialSessionID=${registerResponse.sessionId};Expires=${registerResponse.expireAt};Domain=localhost; HttpOnly;Path=/`;
+        cookies().set('SocialSessionID', registerResponse.sessionId, {
+            expires: registerResponse.expireAt,
+            httpOnly: true,
+            secure: true,
+            domain: 'localhost',
+            path: '/'
+        })
+        cookies().set('SocialUsername', registerResponse.user.username, {
+            expires: registerResponse.expireAt,
+            httpOnly: false,
+            secure: true,
+            domain: 'localhost',
+            path: '/'
+        })
 
         return new Response(JSON.stringify(registerResponse.user), {
             status: 200,
-            headers: { 'Set-Cookie': authCookie },
         })
     }catch (e){
         if (e instanceof ConflictError){

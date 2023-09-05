@@ -36,6 +36,7 @@ const RegisterForm = () => {
                 data.password, data.name, data.photoUrl);
             console.log(JSON.stringify(loginResponse));
             router.push("/");
+            router.refresh();
         }catch(e){
             if (e instanceof ConflictError){
                 setServerError("El nombre de usuario ya existe");
