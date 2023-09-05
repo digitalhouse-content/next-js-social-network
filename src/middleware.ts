@@ -33,5 +33,5 @@ const getAuthenticationHeaders = (request: NextRequest, accessToken: string) => 
 }
  
 export const config = {
-  matcher: '/profile',
+  matcher: ['/profile','/api/proxy/:path*']
 }
