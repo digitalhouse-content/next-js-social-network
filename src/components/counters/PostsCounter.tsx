@@ -3,6 +3,7 @@ type PostCounterProps = {
 }
 
 const PostCounter = ({count} : PostCounterProps) => {
+    if (count < 1) return <></>
     const label = count > 1 ? "posteos" : "posteo";
     return <div>
         {count} {label}
